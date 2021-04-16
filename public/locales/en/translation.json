@@ -1,0 +1,41 @@
+{
+    "menu": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "home": {
+        "hi": "Hi",
+        "name": "I'm Oksana",
+        "btn": "Contact Me"
+    },
+    "about": {
+        "about": "About",
+        "name": "Oksana Korobanova",
+        "btn": "Contact Me",
+        "languages": "Languages",
+        "en": "English",
+        "enRate": "Upper-Intermediate",
+        "ua": "Ukrainian",
+        "uaRate": "Native",
+        "ru": "Russian",
+        "ruRate": "Conversational",
+        "education": "Education",
+        "place": "Lviv Polytechnic National University",
+        "master": "Master of System Software",
+        "field": "Computer Sciences and Information’s Technologies",
+        "description1":
+        "I work for more than 5 years in the IT industry as a Front End Developer (React: 1+ year of commercial experience). The most recent work is a cloud-based(AWS) SaaS business process management platform built from scratch.",
+          "description2": "I have a Master Degree in System Software.",
+          "description3":
+          "I have also full-stack developer experience with open source CMS (WordPress, Joomla)."
+    },
+    "projects": {
+        "projects": "Projects"
+    },
+    "contacts": {
+        "contact": "Contact Me",
+        "btn": "Contact Me!"
+    }
+}
