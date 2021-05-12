@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 export function useForm(
   initialFValues,
   initialFErrors,
-  validateOnChange = false,
-  validate
+  // validateOnChange = false,
+  // validate
 ) {
   const [values, setValues] = useState(initialFValues);
   const [errors, setErrors] = useState(initialFErrors);
 
-  useEffect(() => {
-    resetForm();
-  }, [initialFValues]);
-
-  useEffect(() => {
-    console.log('values');
-    console.log(values);
-  }, [values]);
-
+ 
   // function for changing state object in depth (obj.property.name)
   function set(obj, path, value) {
     var schema = obj; // a moving reference to internal objects within obj
@@ -57,11 +49,9 @@ export function useForm(
     event.preventDefault();
 
     const { name } = event.target;
-    console.log(name);
     let reader = new FileReader();
     let file = event.target.files[0];
-
-    console.log(file);
+    
     try {
       reader.readAsDataURL(file);
     } catch (err) {

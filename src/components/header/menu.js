@@ -1,15 +1,11 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
   List,
   Link,
-  IconButton,
-  Button,
-  Avatar,
 } from '@material-ui/core';
 import { MainContext } from '../../context/mainContext';
 import {
@@ -20,11 +16,10 @@ import {
   Twitter as TwitterIcon,
   Facebook as FacebookIcon,
   LinkedIn as LinkedInIcon,
-  NoteOutlined as NoteOutlinedIcon,
 } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
-import EnImage from '../../images/languages/en2.png';
-import UaImage from '../../images/languages/ua2.png';
+import EnImage from '../../images/languages/en.webp';
+import UaImage from '../../images/languages/ua.webp';
 const useStyles = makeStyles((theme) => ({
   firstList: {
     width: '100%',
@@ -98,19 +93,9 @@ const lngs = {
 };
 const Menu = (props) => {
   const classes = useStyles();
-  const history = useHistory();
   const { t, i18n } = useTranslation();
-  const { selectedIndex, setSelectedIndex } = useContext(MainContext);
-  function handleClick(event, url) {
-    setSelectedIndex(url);
-    history.push(url);
-    if (props.toggleDrawer) {
-      props.toggleDrawer(event);
-    }
-  }
-
-  console.log('language');
-  console.log();
+  const { selectedIndex, handleNavigation } = useContext(MainContext);
+  const { toggleDrawer } = props;
   return (
     <React.Fragment>
       <List className={classes.firstList}>
@@ -120,7 +105,7 @@ const Menu = (props) => {
           button
           selected={selectedIndex === '/'}
           classes={{ root: classes.listItem, selected: classes.selected }}
-          onClick={(event) => handleClick(event, '/')}>
+          onClick={(event) => handleNavigation(event, '/', toggleDrawer)}>
           <ListItemIcon classes={{ root: classes.listItemIcon }}>
             <HomeIcon className={classes.svgIcon} />
           </ListItemIcon>
@@ -134,7 +119,7 @@ const Menu = (props) => {
           dense={true}
           button
           selected={selectedIndex.includes('/about')}
-          onClick={(event) => handleClick(event, '/about')}
+          onClick={(event) => handleNavigation(event, '/about', toggleDrawer)}
           classes={{ root: classes.listItem, selected: classes.selected }}>
           <ListItemIcon className={classes.listItemIcon}>
             <PersonIcon className={classes.svgIcon} />
@@ -149,7 +134,9 @@ const Menu = (props) => {
           dense={true}
           button
           selected={selectedIndex.includes('/projects')}
-          onClick={(event) => handleClick(event, '/projects')}
+          onClick={(event) =>
+            handleNavigation(event, '/projects', toggleDrawer)
+          }
           style={{ flexDirection: 'column' }}
           classes={{ root: classes.listItem, selected: classes.selected }}>
           <ListItemIcon className={classes.listItemIcon}>
@@ -165,7 +152,7 @@ const Menu = (props) => {
           dense={true}
           button
           selected={selectedIndex === '/contact'}
-          onClick={(event) => handleClick(event, '/contact')}
+          onClick={(event) => handleNavigation(event, '/contact', toggleDrawer)}
           classes={{ root: classes.listItem, selected: classes.selected }}>
           <ListItemIcon className={classes.listItemIcon}>
             <MailIcon className={classes.svgIcon} />
@@ -175,83 +162,20 @@ const Menu = (props) => {
             classes={{ primary: classes.listItemText }}
           />
         </ListItem>
-        {/* <ListItem
-          disableGutters={true}
-          dense={true}
-          button
-          selected={selectedIndex.includes('/blog')}
-          onClick={(event) => handleClick(event, '/blog')}
-          classes={{ root: classes.listItem, selected: classes.selected }}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <NoteOutlinedIcon className={classes.svgIcon} />
-          </ListItemIcon>
-          <ListItemText
-            primary='Blog'
-            classes={{ primary: classes.listItemText }}
-          />
-        </ListItem> */}
       </List>
-      {/* <div className={classes.options}>
-        <List className={classes.firstList}>
-          <ListItem
-            disableGutters={true}
-            dense={true}
-            button
-            classes={{ root: classes.listItem }}
-            onClick={(event) => changeSnowActive()}>
-            <ListItemIcon className={classes.listItemIcon}>
-              <AcUnitIcon className={classes.svgIconOption} />
-            </ListItemIcon>
-            <ListItemText
-              classes={{ secondary: classes.listItemTextOption }}
-              secondary={snowActive ? 'Snow: On' : 'Snow: Off'}
-            />
-          </ListItem>
-          <ListItem
-            disableGutters={true}
-            dense={true}
-            button
-            classes={{ root: classes.listItem }}
-            onClick={(event) => changeAudioPlayerStatus()}>
-            <ListItemIcon className={classes.listItemIcon}>
-              {audioPlayerStatus ? (
-                <VolumeUpIcon className={classes.svgIconOption} />
-              ) : (
-                <VolumeOffIcon className={classes.svgIconOption} />
-              )}
-            </ListItemIcon>
-            <ListItemText
-              classes={{ secondary: classes.listItemTextOption }}
-              secondary={audioPlayerStatus ? 'Music: On' : 'Music: Off'}
-            />
-          </ListItem>
-          <ListItem
-            disableGutters={true}
-            dense={true}
-            button
-            classes={{ root: classes.listItem }}
-            onClick={(event) => changeDarkMode((prevState) => !prevState)}>
-            <ListItemIcon className={classes.listItemIcon}>
-              <NightsStayIcon className={classes.svgIconOption} />
-            </ListItemIcon>
-            <ListItemText
-              classes={{ secondary: classes.listItemTextOption }}
-              secondary={darkMode ? 'Dark Mode: On' : 'Dark Mode: Off'}
-            />
-          </ListItem>
-        </List>
-      </div> */}
+
       <List className={classes.langs}>
         {Object.keys(lngs).map((lng) => (
           <ListItem
+            key={lng}
             disableGutters={true}
             dense={true}
             button
-            selected={i18n.language === lng}
             classes={{ root: classes.langItem }}
             onClick={() => i18n.changeLanguage(lng)}>
             <img
               className={classes.avatar}
+              style={{ opacity: i18n.language === lng ? 1 : 0.5 }}
               alt={lngs[lng].nativeName}
               src={lngs[lng].img}
             />
@@ -260,21 +184,21 @@ const Menu = (props) => {
       </List>
       <div className={classes.socialContainer}>
         <Link
-          href='https://twitter.com/oksanawebdev'
+          href={process.env.REACT_APP_TWITTER}
           target='_blank'
           rel='noopener'
           className={classes.socialLink}>
           <TwitterIcon className={classes.socialIcon} />
         </Link>
         <Link
-          href='https://www.linkedin.com/in/oksana-vitol-49b299b6/'
+          href={process.env.REACT_APP_LINKEDIN}
           target='_blank'
           rel='noopener'
           className={classes.socialLink}>
           <LinkedInIcon className={classes.socialIcon} />
         </Link>
         <Link
-          href='https://www.facebook.com/oksana.vitol'
+          href={process.env.REACT_APP_FACEBOOK}
           target='_blank'
           rel='noopener'
           className={classes.socialLink}>

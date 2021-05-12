@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.react-pdf__Page {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 992px) {
+  .react-pdf__Page {
+   max-width: 320px;
+   overflow-x: scroll;
+  }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
-

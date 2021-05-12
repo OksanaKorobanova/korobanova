@@ -13,8 +13,6 @@ import {
   Link,
   GridList,
   GridListTile,
-  GridListTileBar,
-  IconButton,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
@@ -22,23 +20,22 @@ import { MainContext } from '../context/mainContext';
 import {
   CheckCircleOutline as CheckCircleOutlineIcon,
   Launch as LaunchIcon,
-  Info as InfoIcon,
 } from '@material-ui/icons';
 
-import Img1 from '../images/markroid/demoPhotos/1.png';
-import Img2 from '../images/markroid/demoPhotos/2.png';
-import Img3 from '../images/markroid/demoPhotos/3.png';
-import Img4 from '../images/markroid/demoPhotos/4.png';
-import Img5 from '../images/markroid/demoPhotos/5.png';
-import Img6 from '../images/markroid/demoPhotos/6.png';
-import Img7 from '../images/markroid/demoPhotos/7.png';
+import Img1 from '../images/markroid/demoPhotos/1.webp';
+import Img2 from '../images/markroid/demoPhotos/2.webp';
+import Img3 from '../images/markroid/demoPhotos/3.webp';
+import Img4 from '../images/markroid/demoPhotos/4.webp';
+import Img5 from '../images/markroid/demoPhotos/5.webp';
+import Img6 from '../images/markroid/demoPhotos/6.webp';
+import Img7 from '../images/markroid/demoPhotos/7.webp';
 
-import Gallery from '../components/project/gallery';
 const useStyles = makeStyles((theme) => ({
   home: {
     flex: 1,
   },
   hero: {
+    position: 'relative',
     height: '100vh',
     paddingTop: theme.spacing(3),
     display: 'flex',
@@ -93,8 +90,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     alignItems: 'center',
   },
-  technologies: {
-    paddingBottom: theme.spacing(3),
+  gallery: {
+    paddingTop: theme.spacing(8),
   },
 }));
 
@@ -116,6 +113,30 @@ const tileData = [
     title: 'Image',
     author: 'author',
     cols: 1,
+  },
+  {
+    img: Img4,
+    title: 'Image',
+    author: 'author',
+    cols: 1,
+  },
+  {
+    img: Img5,
+    title: 'Image',
+    author: 'author',
+    cols: 1,
+  },
+  {
+    img: Img6,
+    title: 'Image',
+    author: 'author',
+    cols: 1,
+  },
+  {
+    img: Img7,
+    title: 'Image',
+    author: 'author',
+    cols: 2,
   },
 ];
 
@@ -196,7 +217,11 @@ const Project = () => {
         </div>
         <div className={classes.aboutProject}>
           <Container maxWidth='lg' className={classes.container}>
-            <Grid container={true} alignItems='center'>
+            <Grid
+              container={true}
+              alignItems='center'
+              justify='space-between'
+              spacing={2}>
               <Grid item={true} xs={12} md={12} lg={6}>
                 <Typography
                   component='p'
@@ -233,12 +258,32 @@ const Project = () => {
                 </div>
               </Grid>
               <Grid item={true} xs={12} md={6} lg={6}>
+                <Typography
+                  component='p'
+                  color='textSecondary'
+                  variant='h4'
+                  gutterBottom>
+                  Technologies
+                </Typography>
+                <div className={classes.box}>
+                  {project.technologies
+                    ? project.technologies.map((item, index) => (
+                        <Chip
+                          key={index}
+                          label={item}
+                          variant='outlined'
+                          className={classes.chip}
+                          size='medium'
+                        />
+                      ))
+                    : ''}
+                </div>
                 {/* <Gallery /> */}
               </Grid>
             </Grid>
           </Container>
         </div>
-        <div className={classes.technologies}>
+        <div className={classes.gallery}>
           <Container maxWidth='lg' className={classes.container}>
             <GridList cellHeight={300} className={classes.gridList} cols={3}>
               {tileData.map((tile) => (
@@ -258,30 +303,6 @@ const Project = () => {
                 </GridListTile>
               ))}
             </GridList>
-          </Container>
-        </div>
-        <div className={classes.technologies}>
-          <Container maxWidth='lg' className={classes.container}>
-            <Typography
-              component='p'
-              color='textSecondary'
-              variant='h4'
-              gutterBottom>
-              Technologies
-            </Typography>
-            <div className={classes.box}>
-              {project.technologies
-                ? project.technologies.map((item, index) => (
-                    <Chip
-                      key={index}
-                      label={item}
-                      variant='outlined'
-                      className={classes.chip}
-                      size='medium'
-                    />
-                  ))
-                : ''}
-            </div>
           </Container>
         </div>
       </div>

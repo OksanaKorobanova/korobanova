@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const images = [
@@ -147,7 +147,7 @@ const Gallery = (props) => {
     <ul className={classes.grid}>
       {images.map((item, index) => (
         <li key={index} className={classes.li}>
-          <img className={classes.img} src={item} />
+          <img className={classes.img} src={item} alt={'Image #' + index}/>
         </li>
       ))}
     </ul>

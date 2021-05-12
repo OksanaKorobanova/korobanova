@@ -1,8 +1,10 @@
 import React, { useEffect, useContext } from 'react';
 import { MainContext } from '../../context/mainContext';
+import AudioMP3 from '../../audioPlayer/audio1.mp3';
+import AudioOGG from '../../audioPlayer/audio1.ogg';
 
 const Player = () => {
-  const { audioPlayerStatus, track } = useContext(MainContext);
+  const { audioPlayerStatus } = useContext(MainContext);
 
   useEffect(() => {
     const audio = document.getElementById('audio');
@@ -19,7 +21,8 @@ const Player = () => {
   return (
     <div>
       <audio id='audio' loop>
-        <source src={track.source} />
+        <source src={AudioMP3}  type="audio/mpeg"/>
+        <source src={AudioOGG} type="audio/ogg"/>
         Your browser doesn't support <code>audio</code>.
       </audio>
     </div>

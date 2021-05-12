@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Paper } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,8 +63,7 @@ export default function FileUploader(props) {
     logoTitleRef,
     url,
     fileUploaderStyle = {},
-    fileUploaderImgStyle = {},
-    ...other
+    fileUploaderImgStyle = {}
   } = props;
 
   return (
@@ -76,7 +75,7 @@ export default function FileUploader(props) {
         style={fileUploaderImgStyle}>
         {value ? (
           <React.Fragment>
-            <img className={classes.img} src={url} />
+            <img className={classes.img} src={url} alt='Attached file'/>
             <div className={classes.titleBox}>
               <AttachFileIcon className={classes.iconImg} />
               <Typography

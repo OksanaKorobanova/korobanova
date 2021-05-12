@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Menu from './header/menu';
 import { Menu as MenuIcon, Close as CloseIcon } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { Hidden, IconButton, Drawer, AppBar, Button } from '@material-ui/core';
+import { Hidden, IconButton, Drawer, AppBar } from '@material-ui/core';
 import Options from '../components/header/options';
 import { MainContext } from '../context/mainContext';
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
-  const { setSelectedIndex } = useContext(MainContext);
+  const { handleNavigation } = useContext(MainContext);
 
   const [open, setOpen] = React.useState(false);
 
@@ -79,7 +79,7 @@ const Header = () => {
         <Link
           to='/'
           className={classes.logo}
-          onClick={() => setSelectedIndex('/')}>
+          onClick={(event) => handleNavigation(event, '/')}>
           <div style={{ fontSize: '0.7rem' }}>OKSANA</div>
           <div style={{ fontSize: '0.4rem' }}>KOROBANOVA</div>
         </Link>

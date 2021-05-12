@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { MainContext } from '../context/mainContext';
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
@@ -18,16 +18,14 @@ const useStyles = makeStyles((theme) => ({
 
 const NotFoundPage = (props) => {
   const classes = useStyles();
-  const history = useHistory();
-  const handleClick = (event) => {
-    history.push('/');
-  };
+  const { handleNavigation } = useContext(MainContext);
+
   return (
     <div className={classes.root}>
       <Typography variant='h3' component='h1'>
         404: Not found page!
       </Typography>
-      <Button variant='outlined' onClick={handleClick} className={classes.btn}>
+      <Button variant='outlined' onClick={(event) => handleNavigation(event, '/')} className={classes.btn}>
         Return to Home
       </Button>
     </div>

@@ -30,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = (props) => {
+const Home = () => {
   const classes = useStyles();
-  const { darkMode } = useContext(MainContext);
+  const { darkMode, handleNavigation } = useContext(MainContext);
+
   const testServer = () => {
     test().then((result) => {
       console.log('ay');
@@ -66,7 +67,7 @@ const Home = (props) => {
                 <Button
                   variant={darkMode ? 'outlined' : 'contained'}
                   color='primary'
-                  onClick={(e) => testServer()}
+                  onClick={(event) => handleNavigation(event, '/contact')}
                   className={classes.btn}>
                   {t('home.btn')}
                 </Button>

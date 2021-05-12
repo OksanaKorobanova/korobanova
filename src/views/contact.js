@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Container, Typography, Grid, Button } from '@material-ui/core';
-import { Send as SendIcon, SportsRugbySharp } from '@material-ui/icons';
+import { Send as SendIcon,  LocationOnOutlined as LocationOnOutlinedIcon } from '@material-ui/icons';
 import { Form, useForm } from '../components/formBuilder/useForm';
 import FormBuilder from '../components/formBuilder/FormBuilder';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
-import Game from '../components/contact/ticTacToe/game';
 import SocialComponent from '../components/contact/socialComponent';
-import MapImg from '../images/contact/map.png';
-import { useTheme } from '@material-ui/core/styles';
-import { LocationOnOutlined as LocationOnOutlinedIcon } from '@material-ui/icons';
+import MapImg from '../images/contact/map.webp';
 import { useTranslation } from 'react-i18next';
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -110,7 +107,7 @@ const Contact = (props) => {
       console.log(process.env.REACT_APP_USER_FROM);
       console.log('validate=true');
       axios
-        .post('/send', { ...values })
+        .post('/api/send', { ...values })
         .then((response) => {
           if (response.data) {
             console.log(response.data);
@@ -199,7 +196,6 @@ const Contact = (props) => {
         </Grid>
         <Grid
           item={true}
-          xs={false}
           xs={12}
           md={6}
           lg={6}

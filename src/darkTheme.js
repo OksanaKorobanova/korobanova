@@ -1,4 +1,4 @@
-import HomeImg from './images/home/homeDark.jpg';
+import HomeImg from './images/home/homeDark.webp';
 
 const darkTheme = {
   homeBg: `url(${HomeImg})`,

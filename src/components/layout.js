@@ -8,7 +8,6 @@ import darkTheme from '../darkTheme';
 import lightTheme from '../lightTheme';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Snow from './snow/snowFallCanvas';
-import Player from '../components/player/Player';
 import Options from '../components/header/options';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +36,6 @@ const Layout = (props) => {
       <CssBaseline />
       <Header />
       {snowActive ? <Snow /> : ''}
-      <Player />
       <Hidden mdDown>
         <Options />
       </Hidden>

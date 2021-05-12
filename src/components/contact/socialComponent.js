@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from '@material-ui/core';
 
 import {
-  MailOutlined as MailIcon,
   Twitter as TwitterIcon,
   Facebook as FacebookIcon,
   LinkedIn as LinkedInIcon,
@@ -38,21 +37,21 @@ const SocialComponent = (props) => {
   return (
     <div className={classes.socialContainer}>
       <Link
-        href='https://twitter.com/ter_bonik'
+        href={process.env.REACT_APP_TWITTER}
         target='_blank'
         rel='noopener'
         className={classes.socialLink}>
         <TwitterIcon className={classes.socialIcon} />
       </Link>
       <Link
-        href='https://twitter.com/ter_bonik'
+        href={process.env.REACT_APP_LINKEDIN}
         target='_blank'
         rel='noopener'
         className={classes.socialLink}>
         <LinkedInIcon className={classes.socialIcon} />
       </Link>
       <Link
-        href='https://twitter.com/ter_bonik'
+        href={process.env.REACT_APP_FACEBOOK}
         target='_blank'
         rel='noopener'
         className={classes.socialLink}>

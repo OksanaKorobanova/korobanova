@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemIcon, ListItemText, List } from '@material-ui/core';
 import { MainContext } from '../../context/mainContext';
 import {
-  AcUnit as AcUnitIcon,
   NightsStay as NightsStayIcon,
   VolumeUp as VolumeUpIcon,
   VolumeOff as VolumeOffIcon,
 } from '@material-ui/icons';
-
+import AudioMP3 from '../../audioPlayer/audio1.mp3';
+import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 const useStyles = makeStyles((theme) => ({
   options: {},
 
@@ -101,14 +101,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Options = ({ direction = 'vertical', position = 'fixed' }) => {
   const classes = useStyles();
-  const {
-    snowActive,
-    changeSnowActive,
-    darkMode,
-    changeDarkMode,
-    audioPlayerStatus,
-    changeAudioPlayerStatus,
-  } = useContext(MainContext);
+  const { darkMode, changeDarkMode } =
+    useContext(MainContext);
+
+  const { isPlaying, handleChangePlayer } = useAudioPlayer(AudioMP3, 0.15);
 
   return (
     <div
@@ -121,7 +117,7 @@ const Options = ({ direction = 'vertical', position = 'fixed' }) => {
           classes.firstList,
           direction === 'vertical' ? classes.vertical : classes.row
         )}>
-        <ListItem
+        {/* <ListItem
           disableGutters={true}
           dense={true}
           button
@@ -141,7 +137,7 @@ const Options = ({ direction = 'vertical', position = 'fixed' }) => {
             classes={{ secondary: classes.listItemTextOption }}
             secondary={snowActive ? 'Snow: On' : 'Snow: Off'}
           />
-        </ListItem>
+        </ListItem> */}
         <ListItem
           disableGutters={true}
           dense={true}
@@ -154,9 +150,9 @@ const Options = ({ direction = 'vertical', position = 'fixed' }) => {
                 : classes.rowListItem
             ),
           }}
-          onClick={(event) => changeAudioPlayerStatus()}>
+          onClick={handleChangePlayer}>
           <ListItemIcon className={classes.listItemIcon}>
-            {audioPlayerStatus ? (
+            {isPlaying ? (
               <VolumeUpIcon className={classes.svgIconOption} />
             ) : (
               <VolumeOffIcon className={classes.svgIconOption} />
@@ -164,7 +160,7 @@ const Options = ({ direction = 'vertical', position = 'fixed' }) => {
           </ListItemIcon>
           <ListItemText
             classes={{ secondary: classes.listItemTextOption }}
-            secondary={audioPlayerStatus ? 'Music: On' : 'Music: Off'}
+            secondary={isPlaying ? 'Music: On' : 'Music: Off'}
           />
         </ListItem>
         <ListItem

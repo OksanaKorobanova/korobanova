@@ -1,5 +1,4 @@
-import { rgbToHex } from '@material-ui/core';
-import HomeImg from './images/home/homeLightBg.png';
+import HomeImg from './images/home/homeLightBg.webp';
 
 const lightTheme = {
   homeBg: `url(${HomeImg})`,

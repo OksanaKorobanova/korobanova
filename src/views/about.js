@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
@@ -12,10 +12,10 @@ import {
   Card,
   CardContent,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import Reviews from '../components/about/reviews';
-import Logo from '../images/avatar/logo.jpg';
+import { MainContext } from '../context/mainContext';
+import Logo from '../images/avatar/logo.webp';
 import { useTranslation } from 'react-i18next';
+
 const useStyles = makeStyles((theme) => ({
   home: {
     flex: 1,
@@ -94,12 +94,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'stretch',
   },
-  educationBox: {
-    // marginTop: theme.spacing(1),
-  },
-  rightColumn: {
-    marginLeft: theme.spacing(3),
-  },
   box: {
     padding: theme.spacing(1),
     height: '100%',
@@ -121,18 +115,17 @@ const skills = [
   'Typescript',
   'Bootstrap',
 ];
-const About = (props) => {
+const About = () => {
   const classes = useStyles();
-  const history = useHistory();
-  const handleClick = (url) => (event) => {
-    history.push(url);
-  };
+  const { handleNavigation } = useContext(MainContext);
   const { t } = useTranslation();
   return (
     <Fade in={true} timeout={500}>
       <div className={classes.home}>
         <div className={classes.ribbon}>
-          <div className={classes.ribbonContent} onClick={handleClick('/cv')}>
+          <div
+            className={classes.ribbonContent}
+            onClick={(event) => handleNavigation(event, '/cv')}>
             CV
           </div>
         </div>
@@ -163,17 +156,12 @@ const About = (props) => {
                 <div className={classes.aboutDescrition}>
                   <Typography color='textSecondary' gutterBottom>
                     {t('about.description1')}
-                    {/* I work for more than 3 years in the IT industry. The main
-                    area of my expertise is front end development (client side
-                    of the web): building small and medium web apps with React,
-                    website development, HTML/CSS/JS, responsive cross-browser
-                    web design, etc... */}
                   </Typography>
                   <Typography color='textSecondary' gutterBottom>
-                  {t('about.description2')}
+                    {t('about.description2')}
                   </Typography>
                   <Typography color='textSecondary' gutterBottom>
-                  {t('about.description3')}
+                    {t('about.description3')}
                   </Typography>
                 </div>
                 <Divider className={classes.divider} />
@@ -192,19 +180,14 @@ const About = (props) => {
                   <Button
                     variant='outlined'
                     color='primary'
-                    className={classes.btn}>
+                    className={classes.btn}
+                    onClick={(event) => handleNavigation(event, '/contact')}>
                     {t('about.btn')}
                   </Button>
                 </div>
               </div>
             </Grid>
-            <Grid
-              item={true}
-              xs={12}
-              md={6}
-              lg={5}
-              // className={classes.rightColumn}
-            >
+            <Grid item={true} xs={12} md={6} lg={5}>
               <Grid container={true} className={classes.extraContent}>
                 <Grid item={true} xs={12} md={12} lg={6}>
                   <div className={classes.box}>
@@ -254,12 +237,7 @@ const About = (props) => {
                     </Card>
                   </div>
                 </Grid>
-                <Grid
-                  item={true}
-                  xs={12}
-                  md={12}
-                  lg={6}
-                  className={classes.educationBox}>
+                <Grid item={true} xs={12} md={12} lg={6}>
                   <div className={classes.box}>
                     <Card className={classes.card}>
                       <CardContent>

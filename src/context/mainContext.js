@@ -1,10 +1,9 @@
 import React, { useState, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Project1 from '../images/projects/markroid.jpg';
+import Project1 from '../images/projects/markroid.webp';
 import Logo1 from '../images/markroid/logo.png';
-import Bg1 from '../images/markroid/bg.jpg';
-import Project2 from '../images/projects/oksanavitol.png';
-import Audio1 from '../audioPlayer/audio1.mp3';
+import Bg1 from '../images/markroid/bg.webp';
+import Project2 from '../images/projects/oksanavitol.webp';
 export const MainContext = createContext();
 
 const projectsList = [
@@ -57,12 +56,18 @@ const MainContextProvider = (props) => {
   const [selectedIndex, setSelectedIndex] = React.useState(
     history.location.pathname
   );
+  const handleNavigation = (event, url, toggleDrawer) => {
+    setSelectedIndex(url);
+    history.push(url);
+    if (toggleDrawer) {
+      toggleDrawer(event);
+    }
+  };
   const [darkMode, setDarkMode] = useState(true);
   const [snowActive, setSnowActive] = useState(false);
   const [projects, setProjects] = useState(projectsList);
   const [project, setProject] = useState(null);
-  const [track, setTrack] = useState({ source: Audio1 });
-  const [audioPlayerStatus, setAudioPlayerStatus] = useState(false);
+
   const changeProjectList = (data) => {
     setProjects(data);
   };
@@ -71,9 +76,6 @@ const MainContextProvider = (props) => {
   };
   const changeSnowActive = () => {
     setSnowActive(!snowActive);
-  };
-  const changeAudioPlayerStatus = () => {
-    setAudioPlayerStatus(!audioPlayerStatus);
   };
   const changeDarkMode = () => {
     setDarkMode(!darkMode);
@@ -90,12 +92,9 @@ const MainContextProvider = (props) => {
         darkMode,
         changeDarkMode,
         setDarkMode,
-        audioPlayerStatus,
-        changeAudioPlayerStatus,
-        track,
-        setTrack,
         selectedIndex,
         setSelectedIndex,
+        handleNavigation
       }}>
       {props.children}
     </MainContext.Provider>
