@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button, Grid } from '@material-ui/core';
-import { Page, Document } from 'react-pdf/dist/esm/entry.webpack';
+// import { Page, Document, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
+import { Page, Document, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import PdfFile from '../components/cv/korobanova.pdf';
+
 const useStyles = makeStyles((theme) => ({
   cv: {
     paddingTop: theme.spacing(2),
@@ -25,6 +27,9 @@ const Cv = () => {
   const classes = useStyles();
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  useEffect(() => {
+    pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -56,7 +61,8 @@ const Cv = () => {
               <Document
                 file={PdfFile}
                 onLoadSuccess={onDocumentLoadSuccess}
-                renderMode='svg'>
+                onLoadError={console.error}
+               >
                 <Page
                   size='A4'
                   style={{ display: 'flex', justifyContent: 'center' }}
