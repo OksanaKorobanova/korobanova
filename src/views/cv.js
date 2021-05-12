@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button, Grid } from '@material-ui/core';
-import { Page, Document } from 'react-pdf/dist/esm/entry.webpack';
+import { Page, Document } from 'react-pdf';
+// import { Page, Document } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import PdfFile from '../components/cv/korobanova.pdf';
 const useStyles = makeStyles((theme) => ({
