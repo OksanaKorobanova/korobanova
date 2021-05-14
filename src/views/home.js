@@ -5,6 +5,7 @@ import { MainContext } from '../context/mainContext';
 import Typical from 'react-typical';
 // import { getAllUsers, test } from '../services/userService';
 import { useTranslation } from 'react-i18next';
+
 const useStyles = makeStyles((theme) => ({
   home: {
     flex: 1,

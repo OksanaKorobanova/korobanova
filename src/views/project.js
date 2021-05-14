@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   Container,
   Typography,
@@ -87,6 +88,13 @@ const useStyles = makeStyles((theme) => ({
   gallery: {
     paddingTop: theme.spacing(8),
   },
+  gridImg: {
+    objectFit: 'cover',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+      height: '300px',
+    },
+  },
 }));
 
 const Project = () => {
@@ -119,6 +127,8 @@ const Project = () => {
       window.removeEventListener('scroll', parallaxShift);
     };
   }, []);
+
+  const matchesMdUp = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   return (
     <Fade in={true} timeout={500}>
@@ -237,10 +247,14 @@ const Project = () => {
         </div>
         <div className={classes.gallery}>
           <Container maxWidth='lg' className={classes.container}>
-            <GridList cellHeight={300} className={classes.gridList} cols={3}>
+            <GridList cellHeight={300} cols={matchesMdUp ? 3 : 1}>
               {tileData.map((tile) => (
-                <GridListTile key={tile.img} cols={tile.cols || 1}>
-                  <img src={tile.img} alt={tile.title} />
+                <GridListTile key={tile.img} cols={matchesMdUp ? tile.cols : 1}>
+                  <img
+                    src={tile.img}
+                    alt={tile.title}
+                    className={classes.gridImg}
+                  />
                   {/* here will be photo title & details */}
                   {/* <GridListTileBar
                         title={tile.title}
