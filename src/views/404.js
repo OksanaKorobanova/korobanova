@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
 import { MainContext } from '../context/mainContext';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NotFoundPage = (props) => {
+const NotFoundPage = () => {
   const classes = useStyles();
   const { handleNavigation } = useContext(MainContext);
 

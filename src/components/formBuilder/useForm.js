@@ -3,14 +3,13 @@ import { makeStyles } from '@material-ui/core';
 
 export function useForm(
   initialFValues,
-  initialFErrors,
+  initialFErrors
   // validateOnChange = false,
   // validate
 ) {
   const [values, setValues] = useState(initialFValues);
   const [errors, setErrors] = useState(initialFErrors);
 
- 
   // function for changing state object in depth (obj.property.name)
   function set(obj, path, value) {
     var schema = obj; // a moving reference to internal objects within obj
@@ -51,7 +50,7 @@ export function useForm(
     const { name } = event.target;
     let reader = new FileReader();
     let file = event.target.files[0];
-    
+
     try {
       reader.readAsDataURL(file);
     } catch (err) {
@@ -96,6 +95,26 @@ export function useForm(
     }
   };
 
+  const isValidEmail = (value) => {
+    const regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
+    return regex.test(value);
+  };
+
+  const validateEmailOnBlur = (e) => {
+    const { name, value } = e.target;
+    if (value.length > 0 && isValidEmail(value)) {
+      setErrors({
+        ...errors,
+        [name]: false,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        [name]: true,
+      });
+    }
+  };
+
   const resetForm = () => {
     setValues(() => {
       const newObj = initialFValues;
@@ -116,6 +135,8 @@ export function useForm(
     handleDepthInputChange,
     handleChangeFile,
     validateOnBlur,
+    validateEmailOnBlur,
+    isValidEmail,
     resetForm,
   };
 }

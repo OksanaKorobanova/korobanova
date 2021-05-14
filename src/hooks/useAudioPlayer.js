@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 export function useAudioPlayer(audioFile, volume = 1) {
   const [isPlaying, setIsPlaying] = useState(false);

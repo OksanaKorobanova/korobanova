@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
@@ -95,15 +95,17 @@ const Project = () => {
 
   const { projects } = useContext(MainContext);
   const [project, setProject] = useState({});
+
+  const extractProjectName = useCallback(() => {
+    const historyArr = history.location.pathname.split('/');
+    const projectName = historyArr[historyArr.length - 1];
+    const tempProject = projects.find((item) => item.name === projectName);
+    setProject(tempProject);
+  }, [history.location, projects]);
+
   useEffect(() => {
-    const extractProjectName = () => {
-      const historyArr = history.location.pathname.split('/');
-      const projectName = historyArr[historyArr.length - 1];
-      const tempProject = projects.find((item) => item.name === projectName);
-      setProject(tempProject);
-    };
     extractProjectName();
-  }, []);
+  }, [extractProjectName]);
 
   const [offset, setOffset] = useState(0);
 

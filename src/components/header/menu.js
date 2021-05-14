@@ -18,8 +18,8 @@ import {
   LinkedIn as LinkedInIcon,
 } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
-import EnImage from '../../images/languages/en.webp';
-import UaImage from '../../images/languages/ua.webp';
+import { lngsList } from '../../tempData/tempData';
+
 const useStyles = makeStyles((theme) => ({
   firstList: {
     width: '100%',
@@ -87,15 +87,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const lngs = {
-  en: { nativeName: 'English', img: EnImage },
-  ua: { nativeName: 'Ukrainian', img: UaImage },
-};
 const Menu = (props) => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const { selectedIndex, handleNavigation } = useContext(MainContext);
   const { toggleDrawer } = props;
+
   return (
     <React.Fragment>
       <List className={classes.firstList}>
@@ -165,7 +162,7 @@ const Menu = (props) => {
       </List>
 
       <List className={classes.langs}>
-        {Object.keys(lngs).map((lng) => (
+        {Object.keys(lngsList).map((lng) => (
           <ListItem
             key={lng}
             disableGutters={true}
@@ -176,8 +173,8 @@ const Menu = (props) => {
             <img
               className={classes.avatar}
               style={{ opacity: i18n.language === lng ? 1 : 0.5 }}
-              alt={lngs[lng].nativeName}
-              src={lngs[lng].img}
+              alt={lngsList[lng].nativeName}
+              src={lngsList[lng].img}
             />
           </ListItem>
         ))}

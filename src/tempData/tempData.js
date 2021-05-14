@@ -1,7 +1,7 @@
 import Project1 from '../images/projects/markroid.webp';
 import Logo1 from '../images/markroid/logo.png';
 import Bg1 from '../images/markroid/bg.webp';
-import Project2 from '../images/projects/oksanavitol.webp';
+// import Project2 from '../images/projects/oksanavitol.webp';
 import Img1 from '../images/markroid/demoPhotos/1.webp';
 import Img2 from '../images/markroid/demoPhotos/2.webp';
 import Img3 from '../images/markroid/demoPhotos/3.webp';
@@ -9,6 +9,8 @@ import Img4 from '../images/markroid/demoPhotos/4.webp';
 import Img5 from '../images/markroid/demoPhotos/5.webp';
 import Img6 from '../images/markroid/demoPhotos/6.webp';
 import Img7 from '../images/markroid/demoPhotos/7.webp';
+import EnImage from '../images/languages/en.webp';
+import UaImage from '../images/languages/ua.webp';
 
 export const projectsList = [
   {
@@ -102,14 +104,19 @@ export const tileData = [
 ];
 
 export const skillsList = [
-    'React',
-    'Redux',
-    'Material UI',
-    'GraphQL',
-    'AWS',
-    'HTML5',
-    'CSS3',
-    'JavaScript',
-    'Typescript',
-    'Bootstrap',
-  ];
+  'React',
+  'Redux',
+  'Material UI',
+  'GraphQL',
+  'AWS',
+  'HTML5',
+  'CSS3',
+  'JavaScript',
+  'Typescript',
+  'Bootstrap',
+];
+
+export const lngsList = {
+  en: { nativeName: 'English', img: EnImage },
+  ua: { nativeName: 'Ukrainian', img: UaImage },
+};

@@ -7,11 +7,12 @@ import {
 } from '@material-ui/icons';
 import { Form, useForm } from '../components/formBuilder/useForm';
 import FormBuilder from '../components/formBuilder/FormBuilder';
-import axios from 'axios';
+// import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import SocialComponent from '../components/contact/socialComponent';
 import MapImg from '../images/contact/map.webp';
 import { useTranslation } from 'react-i18next';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
@@ -80,7 +81,7 @@ const initialValidateObj = {
   subject: false,
   message: false,
 };
-const Contact = (props) => {
+const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -88,40 +89,51 @@ const Contact = (props) => {
   const {
     values,
     handleInputChange,
-    setValues,
     errors,
     setErrors,
     validateOnBlur,
+    validateEmailOnBlur,
+    isValidEmail,
   } = useForm(emptyState, initialValidateObj);
 
   const validate = () => {
     let tempErrors = { ...errors };
-
+    tempErrors.name = values.name ? false : true;
+    tempErrors.email = isValidEmail(values.email) ? false : true;
+    tempErrors.subject = values.subject ? false : true;
+    tempErrors.message = values.message ? false : true;
     setErrors(tempErrors);
 
-    return true;
+    return (
+      !tempErrors.name &&
+      !tempErrors.email &&
+      !tempErrors.subject &&
+      !tempErrors.message
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      setResult((prevState) => ({
+        ...prevState,
+        message:
+          'Server issues. Pls connect using Drift ( Message icon at the right part of the screen)',
+      }));
       //   api call
-      console.log('from');
-      console.log(process.env.REACT_APP_USER_FROM);
-      console.log('validate=true');
-      axios
-        .post('/api/send', { ...values })
-        .then((response) => {
-          if (response.data) {
-            console.log(response.data);
-            setResult(response.data);
-            setValues(emptyState);
-            setErrors(initialValidateObj);
-          }
-        })
-        .catch(() => {
-          console.log('Something went wrong.');
-        });
+      // axios
+      //   .post('/api/send', { ...values })
+      //   .then((response) => {
+      //     if (response.data) {
+      //       console.log(response.data);
+      //       setResult(response.data);
+      //       setValues(emptyState);
+      //       setErrors(initialValidateObj);
+      //     }
+      //   })
+      //   .catch(() => {
+      //     console.log('Something went wrong.');
+      //   });
     }
   };
 
@@ -158,7 +170,7 @@ const Contact = (props) => {
                 label='Email'
                 value={values.email}
                 onChange={handleInputChange}
-                onBlur={validateOnBlur}
+                onBlur={validateEmailOnBlur}
                 error={errors.email}
                 width='100%'
                 style={{ backgroundColor: theme.palette.secondary.main }}

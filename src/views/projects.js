@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Projects = (props) => {
+const Projects = () => {
   const classes = useStyles();
   const history = useHistory();
   const handleClick = (url) => (event) => {
