@@ -11,8 +11,6 @@ import {
 const useStyles = makeStyles((theme) => ({
   radioGroupContainer: {
     padding: theme.spacing(1),
-    // width: '100%',
-    // minWidth: '300px',
     marginBottom: '8px',
     '&:last-child': {
       marginBottom: 0,

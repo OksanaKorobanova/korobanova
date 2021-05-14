@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, Button, Fade, Grid } from '@material-ui/core';
 import { MainContext } from '../context/mainContext';
 import Typical from 'react-typical';
-import { getAllUsers, test } from '../services/userService';
+// import { getAllUsers, test } from '../services/userService';
 import { useTranslation } from 'react-i18next';
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -33,13 +33,6 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const { darkMode, handleNavigation } = useContext(MainContext);
-
-  const testServer = () => {
-    test().then((result) => {
-      console.log('ay');
-      console.log(result);
-    });
-  };
   const { t } = useTranslation();
   return (
     <Fade in={true} timeout={500}>

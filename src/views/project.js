@@ -22,13 +22,7 @@ import {
   Launch as LaunchIcon,
 } from '@material-ui/icons';
 
-import Img1 from '../images/markroid/demoPhotos/1.webp';
-import Img2 from '../images/markroid/demoPhotos/2.webp';
-import Img3 from '../images/markroid/demoPhotos/3.webp';
-import Img4 from '../images/markroid/demoPhotos/4.webp';
-import Img5 from '../images/markroid/demoPhotos/5.webp';
-import Img6 from '../images/markroid/demoPhotos/6.webp';
-import Img7 from '../images/markroid/demoPhotos/7.webp';
+import { tileData } from '../tempData/tempData';
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -95,51 +89,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const tileData = [
-  {
-    img: Img1,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-  {
-    img: Img2,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: Img3,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: Img4,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: Img5,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: Img6,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: Img7,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-];
-
 const Project = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -147,10 +96,13 @@ const Project = () => {
   const { projects } = useContext(MainContext);
   const [project, setProject] = useState({});
   useEffect(() => {
-    const historyArr = history.location.pathname.split('/');
-    const projectName = historyArr[historyArr.length - 1];
-    const tempProject = projects.find((item) => item.name === projectName);
-    setProject(tempProject);
+    const extractProjectName = () => {
+      const historyArr = history.location.pathname.split('/');
+      const projectName = historyArr[historyArr.length - 1];
+      const tempProject = projects.find((item) => item.name === projectName);
+      setProject(tempProject);
+    };
+    extractProjectName();
   }, []);
 
   const [offset, setOffset] = useState(0);
@@ -165,9 +117,7 @@ const Project = () => {
       window.removeEventListener('scroll', parallaxShift);
     };
   }, []);
-  useEffect(() => {
-    console.log(project);
-  }, [project]);
+
   return (
     <Fade in={true} timeout={500}>
       <div className={classes.home}>
@@ -289,6 +239,7 @@ const Project = () => {
               {tileData.map((tile) => (
                 <GridListTile key={tile.img} cols={tile.cols || 1}>
                   <img src={tile.img} alt={tile.title} />
+                  {/* here will be photo title & details */}
                   {/* <GridListTileBar
                         title={tile.title}
                         subtitle={<span>by: {tile.author}</span>}

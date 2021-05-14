@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button, Grid } from '@material-ui/core';
-// import { Page, Document, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
 import { Page, Document, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import PdfFile from '../components/cv/korobanova.pdf';
@@ -61,8 +60,7 @@ const Cv = () => {
               <Document
                 file={PdfFile}
                 onLoadSuccess={onDocumentLoadSuccess}
-                onLoadError={console.error}
-               >
+                onLoadError={console.error}>
                 <Page
                   size='A4'
                   style={{ display: 'flex', justifyContent: 'center' }}

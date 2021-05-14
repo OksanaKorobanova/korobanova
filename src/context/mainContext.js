@@ -1,56 +1,9 @@
 import React, { useState, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Project1 from '../images/projects/markroid.webp';
-import Logo1 from '../images/markroid/logo.png';
-import Bg1 from '../images/markroid/bg.webp';
-import Project2 from '../images/projects/oksanavitol.webp';
+import { projectsList } from '../tempData/tempData';
+
 export const MainContext = createContext();
 
-const projectsList = [
-  {
-    id: 1,
-    name: 'Markroid',
-    link: 'https://markroid.com/',
-    logo: Logo1,
-    background: Bg1,
-    description:
-      'Markroid platform provides digital infrastructure for startups and businesses to research, develop, maintain and automate business model and all underlying resources and activities',
-    client: 'XGenTeam',
-    clientLocation: 'Baton Rouge, US',
-    image: Project1,
-    business: 'A cloud-based(AWS) SaaS platform to manage business processes',
-    solution: [
-      'Landing Page design && development',
-      'SPA built with React (functional components & custom hooks & context)',
-      'UI Framework - Material UI (custom theme, theme styles overriding)',
-      'AWS Authentication, Amazon S3 on front-end (using AWS Amplify)',
-      'APIs using GraphQL',
-      'Tables, charts(using Recharts), custom forms',
-      'Developed single React project for converting JSON to Landing Page for Markroid clients',
-      'Developed npm package for converting JSON to React Material UI forms',
-    ],
-    technologies: [
-      'React',
-      'Material UI',
-      'GraphQL',
-      'NodeJs',
-      'AWS',
-      'HTML5',
-      'CSS3',
-    ],
-    status: 'in progress',
-  },
-  // {
-  //   id: 2,
-  //   name: 'oksanavitol.com',
-  //   description: 'Personal website',
-  //   client: '',
-  //   image: Project2,
-  //   business: '',
-  //   solution: [],
-  //   technologies: ['React', 'Redux', 'Material UI'],
-  // },
-];
 const MainContextProvider = (props) => {
   const history = useHistory();
   const [selectedIndex, setSelectedIndex] = React.useState(
@@ -94,7 +47,7 @@ const MainContextProvider = (props) => {
         setDarkMode,
         selectedIndex,
         setSelectedIndex,
-        handleNavigation
+        handleNavigation,
       }}>
       {props.children}
     </MainContext.Provider>

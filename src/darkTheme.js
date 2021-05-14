@@ -41,7 +41,7 @@ const darkTheme = {
       header: '#181818',
       mode: 'black',
       modeBg: '#181818',
-      opacityOverlay: 'rgba(0, 0, 0, 0.7)'
+      opacityOverlay: 'rgba(0, 0, 0, 0.7)',
     },
     text: {
       primary: '#ffffff',

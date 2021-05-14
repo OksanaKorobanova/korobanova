@@ -42,7 +42,7 @@ const lightTheme = {
       header: '#eee',
       mode: 'white',
       modeBg: 'rgb(107, 132, 92)',
-      opacityOverlay: 'rgba(255, 255, 255, 0.9)'
+      opacityOverlay: 'rgba(255, 255, 255, 0.9)',
     },
     text: {
       primary: '#000000',

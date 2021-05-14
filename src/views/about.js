@@ -15,6 +15,7 @@ import {
 import { MainContext } from '../context/mainContext';
 import Logo from '../images/avatar/logo.webp';
 import { useTranslation } from 'react-i18next';
+import { skillsList } from '../tempData/tempData';
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -103,18 +104,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const skills = [
-  'React',
-  'Redux',
-  'Material UI',
-  'GraphQL',
-  'AWS',
-  'HTML5',
-  'CSS3',
-  'JavaScript',
-  'Typescript',
-  'Bootstrap',
-];
 const About = () => {
   const classes = useStyles();
   const { handleNavigation } = useContext(MainContext);
@@ -167,7 +156,7 @@ const About = () => {
                 <Divider className={classes.divider} />
 
                 <div className={classes.skills}>
-                  {skills.map((item, index) => (
+                  {skillsList.map((item, index) => (
                     <Chip
                       key={index}
                       label={item}

@@ -16,7 +16,7 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: true,
-    fallbackLng: 'en',  
+    fallbackLng: 'en',
   });
 
 export default i18n;

@@ -101,8 +101,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Options = ({ direction = 'vertical', position = 'fixed' }) => {
   const classes = useStyles();
-  const { darkMode, changeDarkMode } =
-    useContext(MainContext);
+  const { darkMode, changeDarkMode } = useContext(MainContext);
 
   const { isPlaying, handleChangePlayer } = useAudioPlayer(AudioMP3, 0.15);
 

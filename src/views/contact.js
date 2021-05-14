@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Container, Typography, Grid, Button } from '@material-ui/core';
-import { Send as SendIcon,  LocationOnOutlined as LocationOnOutlinedIcon } from '@material-ui/icons';
+import {
+  Send as SendIcon,
+  LocationOnOutlined as LocationOnOutlinedIcon,
+} from '@material-ui/icons';
 import { Form, useForm } from '../components/formBuilder/useForm';
 import FormBuilder from '../components/formBuilder/FormBuilder';
 import axios from 'axios';
@@ -188,18 +191,13 @@ const Contact = (props) => {
                   color='primary'
                   className={classes.btn}
                   startIcon={<SendIcon />}>
-                 {t('contacts.btn')}
+                  {t('contacts.btn')}
                 </Button>
               </div>
             </Form>
           </div>
         </Grid>
-        <Grid
-          item={true}
-          xs={12}
-          md={6}
-          lg={6}
-          className={classes.map}>
+        <Grid item={true} xs={12} md={6} lg={6} className={classes.map}>
           <div className={classes.bgOpacity}></div>
           <div className={classes.contactInfo}>
             <div className={classes.location}>

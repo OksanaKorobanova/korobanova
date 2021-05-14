@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
@@ -94,19 +94,19 @@ const Projects = (props) => {
     history.push(url);
   };
   const { t } = useTranslation();
-  const { projects, changeProjectList, changeProject } = useContext(
-    MainContext
-  );
+  const { projects } = useContext(MainContext);
 
-  useEffect(() => {
-    fetch('/api/projects')
-      .then((res) => res.json())
+  // Currently have problems with backend deployment
+  // useEffect(() => {
+  //   fetch('/api/projects')
+  //     .then((res) => res.json())
 
-      .then((data) => {
-        console.log(data);
-        changeProjectList(data);
-      });
-  }, []);
+  //     .then((data) => {
+  //       console.log(data);
+  //       changeProjectList(data);
+  //     });
+  // }, []);
+
   return (
     <div className={classes.home}>
       <Container maxWidth='lg' className={classes.container}>

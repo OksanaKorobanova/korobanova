@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
 import { MainContext } from '../context/mainContext';
@@ -25,7 +25,10 @@ const NotFoundPage = (props) => {
       <Typography variant='h3' component='h1'>
         404: Not found page!
       </Typography>
-      <Button variant='outlined' onClick={(event) => handleNavigation(event, '/')} className={classes.btn}>
+      <Button
+        variant='outlined'
+        onClick={(event) => handleNavigation(event, '/')}
+        className={classes.btn}>
         Return to Home
       </Button>
     </div>
