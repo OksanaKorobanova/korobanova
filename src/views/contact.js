@@ -137,6 +137,21 @@ const Contact = () => {
     }
   };
 
+  const Map = React.memo(function Map({ img }) {
+    return (
+      <Grid item={true} xs={12} md={6} lg={6} className={classes.map}>
+        <div className={classes.bgOpacity}></div>
+        <div className={classes.contactInfo}>
+          <div className={classes.location}>
+            <LocationOnOutlinedIcon className={classes.locationIcon} />
+            <Typography variant='body1'>Ukraine, Lviv</Typography>
+          </div>
+          <SocialComponent />
+        </div>
+      </Grid>
+    );
+  });
+
   return (
     <Container maxWidth='lg' className={classes.container}>
       <Grid container={true} className={classes.gridContent}>
@@ -209,20 +224,7 @@ const Contact = () => {
             </Form>
           </div>
         </Grid>
-        <Grid item={true} xs={12} md={6} lg={6} className={classes.map}>
-          <div className={classes.bgOpacity}></div>
-          <div className={classes.contactInfo}>
-            <div className={classes.location}>
-              <LocationOnOutlinedIcon className={classes.locationIcon} />
-              <Typography variant='body1'>Ukraine, Lviv</Typography>
-            </div>
-            <SocialComponent />
-          </div>
-
-          {/* <div className={classNames(classes.box, classes.dark)}>
-            <Game />
-          </div> */}
-        </Grid>
+        <Map img={MapImg} />
       </Grid>
     </Container>
   );

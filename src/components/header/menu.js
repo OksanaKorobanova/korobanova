@@ -148,8 +148,11 @@ const Menu = (props) => {
           disableGutters={true}
           dense={true}
           button
-          selected={selectedIndex === '/contact'}
-          onClick={(event) => handleNavigation(event, '/contact', toggleDrawer)}
+          selected={selectedIndex.includes('/contact')}
+          onClick={(event) =>
+            handleNavigation(event, '/contact', toggleDrawer)
+          }
+          style={{ flexDirection: 'column' }}
           classes={{ root: classes.listItem, selected: classes.selected }}>
           <ListItemIcon className={classes.listItemIcon}>
             <MailIcon className={classes.svgIcon} />
@@ -159,6 +162,21 @@ const Menu = (props) => {
             classes={{ primary: classes.listItemText }}
           />
         </ListItem>
+        {/* <ListItem
+          disableGutters={true}
+          dense={true}
+          button
+          selected={selectedIndex.includes('/contact')}
+          onClick={(event) => handleNavigation(event, '/contact', toggleDrawer)}
+          classes={{ root: classes.listItem, selected: classes.selected }}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <MailIcon className={classes.svgIcon} />
+          </ListItemIcon>
+          <ListItemText
+            primary={t('menu.contact')}
+            classes={{ primary: classes.listItemText }}
+          />
+        </ListItem> */}
       </List>
 
       <List className={classes.langs}>

@@ -6,14 +6,6 @@ export function useAudioPlayer(audioFile, volume = 1) {
   const audioRef = useRef(new Audio(audioFile));
   audioRef.current.volume = volume;
 
-  // useEffect(() => {
-  //   if (isPlaying) {
-  //     audioRef.current.play();
-  //   } else {
-  //     audioRef.current.pause();
-  //   }
-  // }, [isPlaying]);
-  // const handleChangePlayer = () => setIsPlaying((prevState) => !prevState);
 
   // for mobile browsers
   const handleChangePlayer = () => {

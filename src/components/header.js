@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Menu from './header/menu';
 import { Menu as MenuIcon, Close as CloseIcon } from '@material-ui/icons';
@@ -61,7 +61,7 @@ const Header = () => {
   const classes = useStyles();
   const { handleNavigation } = useContext(MainContext);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const toggleDrawer = (event) => {
     if (

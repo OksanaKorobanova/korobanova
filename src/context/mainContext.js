@@ -16,6 +16,7 @@ const MainContextProvider = (props) => {
       toggleDrawer(event);
     }
   };
+
   const [darkMode, setDarkMode] = useState(true);
   const [snowActive, setSnowActive] = useState(false);
   const [projects, setProjects] = useState(projectsList);

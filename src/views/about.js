@@ -108,6 +108,12 @@ const About = () => {
   const classes = useStyles();
   const { handleNavigation } = useContext(MainContext);
   const { t } = useTranslation();
+
+  const MyAvatar = React.memo(function MyAvatar({ imgSrc }) {
+    return (
+      <Avatar className={classes.avatar} alt='Oksana Korobanova' src={imgSrc} />
+    );
+  });
   return (
     <Fade in={true} timeout={500}>
       <div className={classes.home}>
@@ -130,11 +136,7 @@ const About = () => {
             <Grid item={true} xs={12} md={6} lg={6}>
               <div className={classes.box}>
                 <div className={classes.flexContainer}>
-                  <Avatar
-                    className={classes.avatar}
-                    alt='Oksana Korobanova'
-                    src={Logo}
-                  />
+                  <MyAvatar imgSrc={Logo} />
                   <div className={classes.aboutTitle}>
                     <Typography variant='body1'> {t('about.name')}</Typography>
                     <Typography variant='body1' color='textSecondary'>
